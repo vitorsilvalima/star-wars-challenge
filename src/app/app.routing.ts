@@ -5,12 +5,12 @@ import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'pages',
+    redirectTo: 'pages/people',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'pages'
+    redirectTo: 'pages/people'
   }
 ];
 

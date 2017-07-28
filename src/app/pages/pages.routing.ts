@@ -5,7 +5,18 @@ import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
   {
     component: PagesComponent,
-    path: 'pages'
+    path: 'pages',
+    children: [
+      {
+        path: '',
+        redirectTo: 'people',
+        pathMatch: 'full'
+      },
+      {
+        path: 'people',
+        loadChildren: './people/people.module#PeopleModule'
+      }
+    ]
   }
 ];
 
