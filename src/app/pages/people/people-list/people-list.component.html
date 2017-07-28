@@ -1,6 +1,8 @@
 <p>
   people-list works!
 </p>
-<pre>
-
+<input #name (keyup)='search(name.value)'>
+<pre *ngIf='peopleResponse$ | async as oi; else notfound'>
+{{oi | json}}
 </pre>
+<ng-template #notfound > No Data To Be Displayed</ng-template>

@@ -1,7 +1,8 @@
-import { Person, PersonResponse } from './../interfaces/person';
+import { Person, PeopleResponse } from './../interfaces/person';
 import { Observable } from 'rxjs/Rx';
 import { Http, RequestOptionsArgs, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PeopleService {
@@ -13,9 +14,9 @@ export class PeopleService {
   /**
    * Get a list of people that participated in the movie
    */
-  getAll(): Observable<PersonResponse> {
+  getAll(): Observable<PeopleResponse> {
 
-    return this.http.get( this.api , ).map( response =>  response.json() as PersonResponse);
+    return this.http.get( this.api ).map( response =>  response.json() as PeopleResponse);
 
   }
 
@@ -23,7 +24,7 @@ export class PeopleService {
    * Search people by a given name
    * @param name
    */
-  searchByName(name: string): Observable<PersonResponse> {
+  searchByName(name: string): Observable<PeopleResponse> {
 
     const urlSearchParams: URLSearchParams = new URLSearchParams();
 
@@ -34,7 +35,7 @@ export class PeopleService {
       params: urlSearchParams
     };
 
-    return this.http.get( this.api , reqOptsArgs).map( response =>  response.json() as PersonResponse);
+    return this.http.get( this.api , reqOptsArgs).map( response =>  response.json() as PeopleResponse);
 
   }
 
@@ -43,8 +44,8 @@ export class PeopleService {
    * It will usually be used for pagination
    * @param url
    */
-  getByURL( url: string ): Observable<PersonResponse> {
-      return this.http.get( url ).map( response =>  response.json() as PersonResponse);
+  getByURL( url: string ): Observable<PeopleResponse> {
+      return this.http.get( url ).map( response =>  response.json() as PeopleResponse);
   }
 
   /**

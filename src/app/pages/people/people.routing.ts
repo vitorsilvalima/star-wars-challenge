@@ -8,7 +8,7 @@ const routes: Routes = [
     component: PeopleComponent,
     path: '',
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'list' }
+      { path: '', pathMatch: 'full', redirectTo: 'list' },
       { path: 'list', component: PeopleListComponent },
     ]
   }
