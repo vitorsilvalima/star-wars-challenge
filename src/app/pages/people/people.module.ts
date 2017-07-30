@@ -6,8 +6,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { PeopleListComponent } from './people-list/people-list.component';
-import { MdTableModule } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import {MdInputModule,MdPaginatorModule} from '@angular/material';
+
 
 
 @NgModule({
@@ -15,8 +16,9 @@ import { CdkTableModule } from '@angular/cdk';
     CommonModule,
     routing,
     ProvidersModule,
-    MdTableModule,
-    CdkTableModule
+    Ng2SmartTableModule,
+    MdInputModule,
+    MdPaginatorModule
   ],
   declarations: [
     PeopleComponent,

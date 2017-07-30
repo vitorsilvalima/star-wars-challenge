@@ -1,24 +1,8 @@
-<p>
-  people-list works!
-</p>
-<input #name (keyup)='search(name.value)'>
+<md-input-container floatPlaceholder="never">
+      <input mdInput #name (keyup)='search(name.value)'>
+</md-input-container>
 
-  <div class="example-container mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource" mdSort>
+ <ng2-smart-table [settings]="settings" [source]="peopleStorage"></ng2-smart-table>
 
-    <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
-    </ng-container>
-
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
-
- <pre *ngIf='peopleResponse$ | async as response; else notfound'>
-
- {{response | json}}
-</pre>
-<ng-template #notfound > No Data To Be Displayed</ng-template>
+<md-paginator class='paginator' [pageSize]='10' [length]="totalOfItems" (page)="page($event)">
+</md-paginator>

@@ -5,3 +5,7 @@ body, html {
   margin: 0px;
   padding: 0px;
 }
+
+  .mat-paginator-page-size{
+    visibility: hidden !important;
+  }
