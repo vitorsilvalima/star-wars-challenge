@@ -1,10 +1,13 @@
+import { Person, PeopleResponse } from './../../../interfaces/person';
 import { PeopleService } from './../../../providers/people.service';
-import { PeopleResponse } from '../../../interfaces/person';
 import { Observable, Subject } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+
 import 'rxjs/add/operator/distinctUntilChanged';
+import {DataSource} from '@angular/cdk';
 
 
 @Component({
@@ -14,7 +17,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class PeopleListComponent implements OnInit {
 
-  peopleResponse$: Observable<PeopleResponse>;
+  peopleResponse$: Observable<Person[]>;
+  dataSource: StarWarsDataSource | null;
+  displayedColumns = ['name'];
   private peopleSearch: Subject<string> = new Subject<string>();
 
   constructor(private peopleService: PeopleService) {
@@ -42,8 +47,23 @@ export class PeopleListComponent implements OnInit {
           }
         }
 
-    );
+    ).map((data: PeopleResponse ) => data.results );
+
+    this.dataSource = new StarWarsDataSource(<any>this.peopleResponse$);
     setTimeout(() => this.search() , 500);
   }
 
+}
+
+
+export class StarWarsDataSource extends DataSource<any> {
+  constructor(private dataStream: Observable<Person[]> ) {
+    super();
+  }
+
+  connect(): Observable<Person[]> {
+    return this.dataStream;
+  }
+
+  disconnect() {}
 }

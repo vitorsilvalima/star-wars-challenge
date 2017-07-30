@@ -6,12 +6,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { PeopleListComponent } from './people-list/people-list.component';
+import { MdTableModule } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk';
+
 
 @NgModule({
   imports: [
     CommonModule,
     routing,
-    ProvidersModule
+    ProvidersModule,
+    MdTableModule,
+    CdkTableModule
   ],
   declarations: [
     PeopleComponent,

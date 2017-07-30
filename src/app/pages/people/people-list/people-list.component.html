@@ -2,7 +2,23 @@
   people-list works!
 </p>
 <input #name (keyup)='search(name.value)'>
-<pre *ngIf='peopleResponse$ | async as oi; else notfound'>
-{{oi | json}}
+
+  <div class="example-container mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource" mdSort>
+
+    <ng-container cdkColumnDef="name">
+      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+
+ <pre *ngIf='peopleResponse$ | async as response; else notfound'>
+
+ {{response | json}}
 </pre>
 <ng-template #notfound > No Data To Be Displayed</ng-template>
