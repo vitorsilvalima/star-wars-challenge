@@ -31,21 +31,6 @@ export class PeopleListComponent implements OnInit, OnDestroy {
         title: 'NAME',
         filter: false,
       },
-      height: {
-        title: 'HEIGHT'
-      },
-      mass: {
-        title: 'MASS'
-      },
-      hair_color: {
-        title: 'Hair Color'
-      },
-      skin_color: {
-        title: 'SKIN COLOR'
-      },
-      eye_color: {
-        title: 'EYE COLOR'
-      },
       birth_year: {
         title: 'Birth Year'
       },
@@ -53,16 +38,10 @@ export class PeopleListComponent implements OnInit, OnDestroy {
         title: 'Gender'
       },
       url: {
+        filter: false,
         title: 'Button',
         type: 'custom',
-        renderComponent: ButtonViewComponent,
-        onComponentInitFunction(instance) {
-          instance.save.subscribe(row => {
-            //alert(`${row.url} saved!`);
-
-            //console.log(url);
-          });
-        }
+        renderComponent: ButtonViewComponent
       },
     }
   };
@@ -78,6 +57,7 @@ export class PeopleListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.peopleResponse$ = this.peopleSearch
       .distinctUntilChanged()
       .debounceTime(450)
@@ -136,7 +116,7 @@ export class PeopleListComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-button-detalhes',
   template: `
-    <button md-button (click)="onClick()">{{ renderValue }}</button>
+    <button md-raised-button color='primary' (click)="onClick()">{{ renderValue }}</button>
   `,
 })
 export class ButtonViewComponent implements ViewCell, OnInit {
@@ -153,8 +133,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
   }
 
   onClick() {
-    this.peopleService.selectPerson(<string>this.value);
-    this.router.navigate(['/pages/people/detail']);
+    this.router.navigate(['/pages/people/' + this.peopleService.getIDFromURL(<string>this.value)]);
   }
 }
 

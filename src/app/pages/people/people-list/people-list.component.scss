@@ -1,0 +1,11 @@
+  .table-header{
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    md-input-container{
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+

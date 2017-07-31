@@ -1,54 +1,65 @@
-<md-card *ngIf='person'>
-  <md-card-header color='primary'>
-    <md-card-title>{{person.name}}</md-card-title>
-  </md-card-header>
-  <md-card-content>
-      <table>
-        <tbody>
-          <tr>
-            <td>Height: </td>
-            <td>{{person.height}}</td>
-          </tr>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <md-card *ngIf='person' class='person-card'>
 
-          <tr>
-            <td>Height: </td>
-            <td>{{person.height}}</td>
-          </tr>
+      <md-card-header color='primary'>
+        <md-card-title>{{person.name}}</md-card-title>
+      </md-card-header>
 
-          <tr>
-            <td>Hair Color: </td>
-            <td>{{person.hair_color}}</td>
-          </tr>
+      <md-card-content>
+          <table>
+            <tbody>
+              <tr>
+                <th>Height: </th>
+                <td>{{person.height}}</td>
+              </tr>
 
-          <tr>
-            <td>Skin Color: </td>
-            <td>{{person.skin_color}}</td>
-          </tr>
+              <tr>
+                <th>Height: </th>
+                <td>{{person.height}}</td>
+              </tr>
 
-          <tr>
-            <td>Eye Color: </td>
-            <td>{{person.eye_color}}</td>
-          </tr>
+              <tr>
+                <th>Hair Color: </th>
+                <td>{{person.hair_color}}</td>
+              </tr>
 
-          <tr>
-            <td>Birth Year: </td>
-            <td>{{person.birth_year}}</td>
-          </tr>
+              <tr>
+                <th>Skin Color: </th>
+                <td>{{person.skin_color}}</td>
+              </tr>
 
-          <tr>
-            <td>Gender: </td>
-            <td>{{person.gender}}</td>
-          </tr>
+              <tr>
+                <th>Eye Color: </th>
+                <td>{{person.eye_color}}</td>
+              </tr>
 
-          <tr *ngIf='planet'>
-            <td> Other People From {{planet.name}}: </td>
-            <td>
-              <md-chip-list>
-                <md-chip *ngFor='let resident  of residents' selected='true'>{{resident.name}}</md-chip>
-              </md-chip-list>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-  </md-card-content>
-</md-card>
+              <tr>
+                <th>Birth Year: </th>
+                <td>{{person.birth_year}}</td>
+              </tr>
+
+              <tr>
+                <th>Gender: </th>
+                <td>{{person.gender}}</td>
+              </tr>
+
+              <tr *ngIf='planet'>
+                <th> Other People From {{planet.name}}: </th>
+                <td>
+                  <md-chip-list>
+                    <md-chip class="residents-chip" (click)='selectPerson(resident.url)' *ngFor='let resident  of residents' selected='true'>{{resident.name}}</md-chip>
+                  </md-chip-list>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </md-card-content>
+
+      <md-card-actions>
+            <button md-raised-button routerLink="/people/list" color='primary'>GO TO LIST</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div>
+

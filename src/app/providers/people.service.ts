@@ -54,10 +54,18 @@ export class PeopleService {
   }
 
   /**
+   * Gets one person by his id
+   * @param id the url to get one person
+   */
+  getPersonByID(id: number): Observable<Person> {
+      return this.http.get( this.api + '/' + id ).map( response =>  response.json() as Person);
+  }
+
+  /**
    * Gets one person by his url
    * @param url the url to get one person
    */
-  getPerson(url: string): Observable<Person> {
+  getPersonByURL(url: string): Observable<Person> {
       return this.http.get( url ).map( response =>  response.json() as Person);
   }
 
@@ -67,5 +75,9 @@ export class PeopleService {
 
   getSelectedPerson(): string {
     return this.selectedPerson;
+  }
+
+  getIDFromURL( urL: string ): number{
+    return parseInt( urL.replace(/^\D+/g, ''));
   }
 }

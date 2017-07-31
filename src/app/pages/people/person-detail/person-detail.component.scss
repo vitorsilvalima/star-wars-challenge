@@ -1,0 +1,24 @@
+.residents-chip{
+  margin: 3px;
+}
+
+.person-card{
+  margin-top: 14px;
+  margin-bottom: 14px;
+
+  md-card-title{
+    font-size: 2em;
+  }
+
+  md-card-content{
+    font-size: 1em;
+  }
+
+  th{
+    text-align: left;
+  }
+
+  md-card-actions{
+    text-align: right;
+  }
+}

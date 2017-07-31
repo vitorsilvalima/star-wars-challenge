@@ -1,8 +1,18 @@
-<md-input-container floatPlaceholder="never">
-      <input mdInput #name (keyup)='search(name.value)'>
-</md-input-container>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="table-header">
+      <md-input-container floatPlaceholder="never">
+            <input mdInput #name (keyup)='search(name.value)' placeholder="Filter By Name">
+      </md-input-container>
+    </div>
+  </div>
+</div>
 
- <ng2-smart-table [settings]="settings" [source]="peopleStorage"></ng2-smart-table>
+<div class="row">
+  <div class="col-md-12">
+    <ng2-smart-table [settings]="settings" [source]="peopleStorage"></ng2-smart-table>
 
-<md-paginator class='paginator' [pageSize]='10' [length]="totalOfItems" (page)="page($event)">
-</md-paginator>
+    <md-paginator class='paginator' [pageSize]='10' [length]="totalOfItems" (page)="page($event)">
+    </md-paginator>
+  </div>
+</div>
