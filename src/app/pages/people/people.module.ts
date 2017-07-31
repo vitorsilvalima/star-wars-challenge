@@ -5,7 +5,7 @@ import { PeopleComponent } from './people.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
-import { PeopleListComponent } from './people-list/people-list.component';
+import { PeopleListComponent, ButtonViewComponent } from './people-list/people-list.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {MdInputModule,MdPaginatorModule} from '@angular/material';
 
@@ -23,7 +23,11 @@ import {MdInputModule,MdPaginatorModule} from '@angular/material';
   declarations: [
     PeopleComponent,
     PersonDetailComponent,
-    PeopleListComponent
+    PeopleListComponent,
+    ButtonViewComponent
+  ],
+  entryComponents: [
+    ButtonViewComponent
   ],
   providers: [
 

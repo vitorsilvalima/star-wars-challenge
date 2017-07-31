@@ -8,6 +8,11 @@ import 'rxjs/add/operator/map';
 export class PeopleService {
 
   private api = 'http://swapi.co/api/people';
+  /**
+   * This shared variable should be replace by ngrx for a more dynamic
+   * and complex state
+   */
+  private selectedPerson = '';
 
   constructor(private http: Http) { }
 
@@ -54,5 +59,13 @@ export class PeopleService {
    */
   getPerson(url: string): Observable<Person> {
       return this.http.get( url ).map( response =>  response.json() as Person);
+  }
+
+  selectPerson(url: string) {
+    this.selectedPerson = url;
+  }
+
+  getSelectedPerson(): string {
+    return this.selectedPerson;
   }
 }

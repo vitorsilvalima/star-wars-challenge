@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs/Rx';
+import { Person } from './../../../interfaces/person';
+import { PeopleService } from './../../../providers/people.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonDetailComponent implements OnInit {
 
-  constructor() { }
+  personDetail$: Observable<Person>;
+
+  constructor(private route: ActivatedRoute, private peopleService: PeopleService) { }
 
   ngOnInit() {
+    this.personDetail$ = this.peopleService.getPerson(this.peopleService.getSelectedPerson());
   }
 
 }

@@ -1,12 +1,13 @@
+import { Router } from '@angular/router';
 import { Person, PeopleResponse } from './../../../interfaces/person';
 import { PeopleService } from './../../../providers/people.service';
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 
 
 @Component({
@@ -50,7 +51,19 @@ export class PeopleListComponent implements OnInit, OnDestroy {
       },
       gender: {
         title: 'Gender'
-      }
+      },
+      url: {
+        title: 'Button',
+        type: 'custom',
+        renderComponent: ButtonViewComponent,
+        onComponentInitFunction(instance) {
+          instance.save.subscribe(row => {
+            //alert(`${row.url} saved!`);
+
+            //console.log(url);
+          });
+        }
+      },
     }
   };
   private peopleSearch: Subject<string> = new Subject<string>();
@@ -117,6 +130,31 @@ export class PeopleListComponent implements OnInit, OnDestroy {
       if ( this.subscription ) {
          this.subscription.unsubscribe();
       }
+  }
+}
+
+@Component({
+  selector: 'app-button-detalhes',
+  template: `
+    <button md-button (click)="onClick()">{{ renderValue }}</button>
+  `,
+})
+export class ButtonViewComponent implements ViewCell, OnInit {
+  renderValue: string;
+
+  @Input() value: string | number;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  constructor(private router: Router, private peopleService: PeopleService) {  }
+  ngOnInit() {
+    this.renderValue = 'Details';
+  }
+
+  onClick() {
+    this.peopleService.selectPerson(<string>this.value);
+    this.router.navigate(['/pages/people/detail']);
   }
 }
 
