@@ -97,7 +97,6 @@ export class PeopleListComponent implements OnInit, OnDestroy {
   page(params: PageEvent) {
     if ( this.actualPage < params.pageIndex ) {
       this.actualPage = params.pageIndex;
-      console.log(this.nextUrl);
       this.search(this.nextUrl);
     }else if ( this.actualPage > params.pageIndex ) {
       this.actualPage = params.pageIndex;
