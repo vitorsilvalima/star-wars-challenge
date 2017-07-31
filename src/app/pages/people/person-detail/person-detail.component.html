@@ -1,3 +1,54 @@
-<pre>
-  {{personDetail$|async|json}}
-</pre>
+<md-card *ngIf='person'>
+  <md-card-header color='primary'>
+    <md-card-title>{{person.name}}</md-card-title>
+  </md-card-header>
+  <md-card-content>
+      <table>
+        <tbody>
+          <tr>
+            <td>Height: </td>
+            <td>{{person.height}}</td>
+          </tr>
+
+          <tr>
+            <td>Height: </td>
+            <td>{{person.height}}</td>
+          </tr>
+
+          <tr>
+            <td>Hair Color: </td>
+            <td>{{person.hair_color}}</td>
+          </tr>
+
+          <tr>
+            <td>Skin Color: </td>
+            <td>{{person.skin_color}}</td>
+          </tr>
+
+          <tr>
+            <td>Eye Color: </td>
+            <td>{{person.eye_color}}</td>
+          </tr>
+
+          <tr>
+            <td>Birth Year: </td>
+            <td>{{person.birth_year}}</td>
+          </tr>
+
+          <tr>
+            <td>Gender: </td>
+            <td>{{person.gender}}</td>
+          </tr>
+
+          <tr *ngIf='planet'>
+            <td> Other People From {{planet.name}}: </td>
+            <td>
+              <md-chip-list>
+                <md-chip *ngFor='let resident  of residents' selected='true'>{{resident.name}}</md-chip>
+              </md-chip-list>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </md-card-content>
+</md-card>

@@ -12,7 +12,7 @@ export class PeopleService {
    * This shared variable should be replace by ngrx for a more dynamic
    * and complex state
    */
-  private selectedPerson = '';
+  private selectedPerson = 'http://swapi.co/api/people/1';
 
   constructor(private http: Http) { }
 
